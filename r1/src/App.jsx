@@ -1,59 +1,57 @@
 import './App.css';
-//import Fun from './Components/006/Fun';
-import { useState } from "react";
-//import Sad from './Components/006/Sad';
-import randColor from './Functions/randColor';
-import Kvadratukas from './Components/006/Nd006';
-import Nd006 from './Components/006/Nd006';
-import ChangeIrRandom from './Components/006/ChangeIrRandom';
-import PlusMinus from './Components/006/PlusMinus';
-import AddSquare from './Components/006/AddSquare';
-import RedBlueReset from './Components/006/RedBlueReset';
-
-// function App() {
-//   // const [count, setCount] = useState(0);
-//   const [kv, setKv] = useState([]);
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <h1 onClick={() => setKv(k => [...k, randColor()])}>State</h1>
-//             {/* <Fun spalva="pink" setCount={setCount}></Fun>
-//             <Sad count={count}></Sad> */}
-//             <div className="kv-bin">
-//                 {
-//                   kv.map((c, i) => <div className="kv" style={{
-//                       backgroundColor: c+'69',
-//                       borderColor: c
-//                   }} key={i}></div>)
-//                 }
-//             </div>
-//         </header>
-//     </div>
-//   );
-// }
-
-
+// import PirmasisKontekstas, {KitasKontekstas, DarVienasKontekstas} from './Contexts/PirmasisKontekstas';
+import PirmasisKontekstas, {KitasKontekstas, DarVienasKontekstas}  from './Contexts/PirmasisKontekstas';
+import M1 from './Components/009/M2';
+import { useState } from 'react';
+import { useRef } from 'react';
 
 function App() {
-  
-  return (
-    <div className="App">
-      <header className="App-header">
-          <Nd006></Nd006>
-          -----------ChangeIrRandom--------
-          <ChangeIrRandom></ChangeIrRandom>
-          -----------PlusMinus--------
-          <PlusMinus></PlusMinus>
-          -----------AddSquare--------
-          <AddSquare></AddSquare>
-          -----------Red Blue Reset--------
-          <RedBlueReset></RedBlueReset>
-        </header>
-    </div>
-  );
+
+    const [count, setCount] = useState(0);
+
+    const blaSuper = useRef(5);
+
+    const good = useRef();    
+    let Bla = 5;
+
+    const doCount = () => {
+        // const my = document.querySelector('button');
+
+        const my = good.current;
+
+        console.log(my);
+
+        setCount (c => c +1);
+        Bla++;
+        console.log(Bla);
+        blaSuper.current++
+        console.log(blaSuper.current);
+    }
+
+
+    return (
+        <DarVienasKontekstas.Provider value={{dar:10000}}>
+        <PirmasisKontekstas.Provider value={{
+            pirmas: 'Valio',
+            spalva: 'pink'
+        }}>
+        <div className="App">
+            <header className="App-header">
+                <h1>useContext & useRef{count}</h1>
+                <M1 kas="Penki"></M1>
+                <button ref={good} onClick={doCount}>+1</button>
+               
+
+            </header>
+        </div>
+        </PirmasisKontekstas.Provider>
+        </DarVienasKontekstas.Provider>
+    );
 }
 
 export default App;
 
 
 //state - busena, pradzioje buna false, po to paspaudus mygtuka patampa true.
+// defoultinis importuojamas kontekstas gali buti pervardintas App faile prie Import "PirmasisKontekstas" i Bla.
+// <PirmasisiKontekstas.Provider></PirmasisKontekstas.Provider> plotas kuriame veiks drilinimas.

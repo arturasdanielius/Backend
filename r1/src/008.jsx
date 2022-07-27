@@ -3,6 +3,7 @@ import Text from './Components/008/Text';
 import Select from './Components/008/Select';
 import Checkbox from './Components/008/Checkbox';
 import Radio from './Components/008/Radio';
+import RctForm1 from './Components/008/ReactForms1';
 
 function App() {
 
@@ -15,6 +16,9 @@ function App() {
                 <Select></Select>
                 <Checkbox></Checkbox>
                 <Radio></Radio>
+                -----Reac--Forms----
+                <RctForm1></RctForm1>
+
             </header>
         </div>
     );
