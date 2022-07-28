@@ -16,7 +16,7 @@ function App() {
                 <Select></Select>
                 <Checkbox></Checkbox>
                 <Radio></Radio>
-                -----Reac--Forms----
+                -----React--Forms----
                 <RctForm1></RctForm1>
 
             </header>

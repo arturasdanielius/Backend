@@ -33,7 +33,7 @@ function Text() {
                 <input type="text" value={text} onChange={handleInput}></input>
                 <div>
                     <input type="color" value={color} onChange={handleColorInput}></input>
-                </div>   
+                </div>
             </fieldset>
         </>
     )
