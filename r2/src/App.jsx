@@ -3,7 +3,7 @@ import './App.scss';
 import Create from './Components/Create';
 import AnimalsContext from './Components/AnimalsContext';
 import { useEffect, useState } from 'react';
-import { create, read } from './Functions/localstorage';
+import { create, destroy, read } from './Functions/localstorage';
 import List from './Components/List';
 
 const keyLock = 'myFantasticZoo';
@@ -18,20 +18,31 @@ const animalsTypes = [
 
 function App() {
 
+  const [lastUpdate, setLastUpdate] = useState(Date.now())
 
   const [createData, setCreateData] = useState(null);
+  const [deleteData, setDeleteData] = useState(null);
   const [animals, setAnimals] = useState(null);
 
   useEffect(() => {
     setAnimals(read(keyLock));
-  }, [])
+  }, [lastUpdate]);
 
   useEffect(() => {
     if (null === createData) {
       return;
     }
     create(keyLock, createData);
+    setLastUpdate(Date.now());
   }, [createData]);
+
+  useEffect(() => {
+    if (null === deleteData) {
+      return;
+    }
+    destroy(keyLock, deleteData);
+    setLastUpdate(Date.now());
+  }, [deleteData]);
 
 
 
@@ -39,7 +50,8 @@ function App() {
     <AnimalsContext.Provider value={{
       animalsTypes,
       setCreateData,
-      animals
+      animals,
+      setDeleteData
     }}>
       <div className="container">
         <div className="row">
