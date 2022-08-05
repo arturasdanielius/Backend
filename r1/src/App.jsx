@@ -1,51 +1,29 @@
 import './App.css';
-// import PirmasisKontekstas, {KitasKontekstas, DarVienasKontekstas} from './Contexts/PirmasisKontekstas';
-import PirmasisKontekstas, {KitasKontekstas, DarVienasKontekstas}  from './Contexts/PirmasisKontekstas';
-import M1 from './Components/009/M2';
-import { useState } from 'react';
-import { useRef } from 'react';
+import Text from './Components/008/Text';
+import Select from './Components/008/Select';
+import Checkbox from './Components/008/Checkbox';
+import Radio from './Components/008/Radio';
+import RctForm1 from './Components/008/ReactForms1';
+import RctForm2 from './Components/008/ReactForms2';
 
 function App() {
 
-    const [count, setCount] = useState(0);
-
-    const blaSuper = useRef(5);
-
-    const good = useRef();    
-    let Bla = 5;
-
-    const doCount = () => {
-        // const my = document.querySelector('button');
-
-        const my = good.current;
-
-        console.log(my);
-
-        setCount (c => c +1);
-        Bla++;
-        console.log(Bla);
-        blaSuper.current++
-        console.log(blaSuper.current);
-    }
-
 
     return (
-        <DarVienasKontekstas.Provider value={{dar:10000}}>
-        <PirmasisKontekstas.Provider value={{
-            pirmas: 'Valio',
-            spalva: 'pink'
-        }}>
         <div className="App">
             <header className="App-header">
-                <h1>useContext & useRef{count}</h1>
-                <M1 kas="Penki"></M1>
-                <button ref={good} onClick={doCount}>+1</button>
-               
+                <h1>Form Controll</h1>
+                <Text></Text>
+                <Select></Select>
+                <Checkbox></Checkbox>
+                <Radio></Radio>
+                -----React--Forms1----
+                <RctForm1></RctForm1>
+                -----React--Forms2----
+                <RctForm2></RctForm2>
 
             </header>
         </div>
-        </PirmasisKontekstas.Provider>
-        </DarVienasKontekstas.Provider>
     );
 }
 
@@ -53,5 +31,3 @@ export default App;
 
 
 //state - busena, pradzioje buna false, po to paspaudus mygtuka patampa true.
-// defoultinis importuojamas kontekstas gali buti pervardintas App faile prie Import "PirmasisKontekstas" i Bla.
-// <PirmasisiKontekstas.Provider></PirmasisKontekstas.Provider> plotas kuriame veiks drilinimas.
