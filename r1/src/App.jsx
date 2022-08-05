@@ -1,26 +1,26 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
-import Text from './Components/008/Text';
-import Select from './Components/008/Select';
-import Checkbox from './Components/008/Checkbox';
-import Radio from './Components/008/Radio';
-import RctForm1 from './Components/008/ReactForms1';
-import RctForm2 from './Components/008/ReactForms2';
+import axios from 'axios';
 
 function App() {
 
+    const [jokes, setJokes] = useState([]);
+
+    useEffect(() => {
+        axios.get('https://v2.jokeapi.dev/joke/Programming?amount=10')
+        .then(a => setJokes(a.data.jokes));
+    }, []);
 
     return (
         <div className="App">
             <header className="App-header">
-                <h1>Form Controll</h1>
-                <Text></Text>
-                <Select></Select>
-                <Checkbox></Checkbox>
-                <Radio></Radio>
-                -----React--Forms1----
-                <RctForm1></RctForm1>
-                -----React--Forms2----
-                <RctForm2></RctForm2>
+                <h1>Jokes</h1>
+                <ul>
+                    {
+                        jokes.map(u => u.joke ?<li key={u.id}><span>{u.joke}</span></li> : <li key={u.id}><span>{u.setup}{u.delivery}</span></li>)
+                    }
+                </ul>
 
             </header>
         </div>
@@ -28,6 +28,3 @@ function App() {
 }
 
 export default App;
-
-
-//state - busena, pradzioje buna false, po to paspaudus mygtuka patampa true.
