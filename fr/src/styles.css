@@ -1,0 +1,25 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.container{
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.picturePlace{
+width: 200px;
+height: 200px;
+
+
+}
+.picture{
+  width: 200px;
+  height: 200px;
+  
+  
+  }
