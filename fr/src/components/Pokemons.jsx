@@ -3,6 +3,7 @@ import Pokemon from "./Pokemon";
 
 const Pokemons = () => {
   const [data, setData] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon")
@@ -12,22 +13,20 @@ const Pokemons = () => {
         (result) => {
           console.log(result.results);
           setData(result.results);
-          //         setIsLoaded(true);
-          //         setItems(result);
         },
         (error) => {
-          //         setIsLoaded(true);
-          //         setError(error);
+          setErrorMsg(error.message);
         }
       );
   }, []);
 
   return (
-    <>
+    <ul>
+      {errorMsg ? errorMsg : "nera erroro"}
       {data.map((pokemon, index) => (
         <Pokemon key={index} vardas={pokemon.name} urlas={pokemon.url} />
       ))}{" "}
-    </>
+    </ul>
   );
 };
 
